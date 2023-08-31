@@ -20,6 +20,6 @@ runs:
     - name: Copy 'rc' branch to 'rel/${{ inputs.version }}'
       shell: bash
       run: |
-        git checkout rc
+        git checkout -b rc origin/rc
         git checkout -b rel/${{ inputs.version }}
         git push origin rel/${{ inputs.version }}
