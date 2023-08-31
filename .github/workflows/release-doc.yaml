@@ -15,6 +15,6 @@ jobs:
         with:
           submodules: recursive
       - name: Release Branch
-        uses: gooddata/gooddata-ui-sdk/.github/actions/release-branch@master
+        uses: JosefZIla/gooddata-ui-sdk/.github/actions/release-branch@master
         with:
           version: ${{ github.event.inputs.version }}
