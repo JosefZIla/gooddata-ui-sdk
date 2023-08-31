@@ -26,7 +26,7 @@ jobs:
 
     - name: Bump doc dependencies
       run: |
-        ls -la
+        pip install -r tools/scripts/bump_doc_dependencies.txt
         python tools/scripts/bump_doc_dependencies.py ${{ github.event.inputs.version }}
 
     - name: Commit updated doc bump_doc_dependencies
