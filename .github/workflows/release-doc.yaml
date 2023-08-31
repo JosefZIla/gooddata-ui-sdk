@@ -1,4 +1,7 @@
-name: Release Doc
+# .github/workflows/copy-branch.yml
+
+name: Copy RC to Release Branch
+
 on:
   workflow_dispatch:
     inputs:
@@ -7,15 +10,18 @@ on:
         required: true
 
 jobs:
-  full-doc-release:
+  copy_branch:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Release Branch
-        uses: JosefZIla/gooddata-ui-sdk/.github/actions/release-branch@master
-        with:
-          version: ${{ github.event.inputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Copy 'rc' branch to 'rel/${{ github.event.inputs.version }}'
+      run: |
+        git checkout rc
+        git checkout -b rel/${{ github.event.inputs.version }}
+        git push origin rel/${{ github.event.inputs.version }}
