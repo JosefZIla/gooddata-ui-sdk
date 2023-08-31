@@ -1,0 +1,32 @@
+name: Release Doc
+description: Release specific version of the documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release Version'     
+        required: true
+jobs:
+  copy_branch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install GitHub CLI
+      run: |
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+        sudo apt-add-repository https://cli.github.com/packages
+        sudo apt update
+        sudo apt install gh
+
+    - name: Configure GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Copy 'rc' branch to 'rel/${{ github.event.inputs.version }}'
+      run: |
+        git checkout rc
+        git checkout -b rel/${{ github.event.inputs.version }}
+        git push origin rel/${{ github.event.inputs.version }}
