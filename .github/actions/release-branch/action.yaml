@@ -10,11 +10,9 @@ inputs:
     required: true
 
 
-jobs:
-  copy_branch:
-    runs-on: ubuntu-latest
-
-    steps:
+runs:
+  using: "composite"
+  steps:
     - name: Install GitHub CLI
       run: |
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
