@@ -25,7 +25,9 @@ jobs:
         ref: ${{ github.event.inputs.branch }}
 
     - name: Bump doc dependencies
-      run: python tools/scripts/bump_doc_dependencies.py ${{ github.event.inputs.version }}
+      run: |
+        ls -la
+        python tools/scripts/bump_doc_dependencies.py ${{ github.event.inputs.version }}
 
     - name: Commit updated doc bump_doc_dependencies
       run: |
