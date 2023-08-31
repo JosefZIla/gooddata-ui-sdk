@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
     - name: Install GitHub CLI
       run: |
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
@@ -24,8 +21,8 @@ jobs:
     - name: Configure GitHub CLI
       run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
 
-    - name: Copy 'rc' branch to 'rel/${{ github.event.inputs.version }}'
+    - name: Copy 'rc' branch to 'rel/${{ inputs.version }}'
       run: |
         git checkout rc
-        git checkout -b rel/${{ github.event.inputs.version }}
-        git push origin rel/${{ github.event.inputs.version }}
+        git checkout -b rel/${{ inputs.version }}
+        git push origin rel/${{ inputs.version }}
