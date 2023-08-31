@@ -18,3 +18,4 @@ jobs:
         uses: JosefZIla/gooddata-ui-sdk/.github/actions/release-branch@master
         with:
           version: ${{ github.event.inputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}

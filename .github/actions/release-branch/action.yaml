@@ -3,8 +3,12 @@ description: Create a release branch that can be later used for documentation ge
 
 inputs:
   version:
-        description: 'Release Version'     
-        required: true
+    description: 'Release Version'     
+    required: true
+  token:
+    description: 'GitHub Token'
+    required: true
+
 
 jobs:
   copy_branch:
@@ -19,7 +23,7 @@ jobs:
         sudo apt install gh
 
     - name: Configure GitHub CLI
-      run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+      run: gh auth login --with-token <<< "${{ inputs.token }}"
 
     - name: Copy 'rc' branch to 'rel/${{ inputs.version }}'
       run: |
