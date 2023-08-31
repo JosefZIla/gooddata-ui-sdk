@@ -1,0 +1,20 @@
+name: Release Doc
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release Version'     
+        required: true
+
+jobs:
+  netlify-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Release Branch
+        uses: gooddata/gooddata-ui-sdk/.github/actions/release-branch@master
+        with:
+          version: ${{ github.event.inputs.version }}
