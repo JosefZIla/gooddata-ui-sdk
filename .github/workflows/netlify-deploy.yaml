@@ -1,6 +1,9 @@
 name: Netlify Deploy
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [start-netlify-deploy]
+
 
 jobs:
   netlify-deploy:
@@ -19,5 +22,5 @@ jobs:
         with:
           args: deploy -d docs/public --prod
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: 'foo'
+          NETLIFY_AUTH_TOKEN: 'bar'
