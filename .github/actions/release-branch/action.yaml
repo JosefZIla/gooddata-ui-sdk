@@ -13,14 +13,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install GitHub CLI
-      shell: bash
-      run: |
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-        sudo apt-add-repository https://cli.github.com/packages
-        sudo apt update
-        sudo apt install gh
-
     - name: Configure GitHub CLI
       shell: bash
       run: gh auth login --with-token <<< "${{ inputs.token }}"
