@@ -19,11 +19,9 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Configure GitHub CLI
-      run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
-
     - name: Copy 'rc' branch to 'rel/${{ github.event.inputs.version }}'
       run: |
         git checkout rc
         git checkout -b rel/${{ github.event.inputs.version }}
+        git remote -v
         git push origin rel/${{ github.event.inputs.version }}
