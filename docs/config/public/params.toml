@@ -11,12 +11,13 @@
     dirpath = "latest"
     url = "/latest/"
 [[versions]]
+version = "9.1"
+dirpath = "9.1"
+url = "/9.1/"
+[[versions]]
 version = "5.6"
 dirpath = "5.6"
 url = "/5.6/"
 [[versions]]
     version = "8.12"
     url = "https://sdk.gooddata.com/gooddata-ui/"
-[[versions]]
-    version = "8.11"
-    url = "https://sdk.gooddata.com/gooddata-ui/docs/8.11.0/about_gooddataui.html"
